@@ -1,0 +1,17 @@
+1. connect to database
+2. use Flask to create API endpoint to get data from db
+3. store the data in json file in github 
+4. use html to access the json and display the content
+5. use Github pages to host the website
+
+
+Issue #1
+verify domain name (need to configure dns)
+
+Issue #2
+static / dynamic IP
+possible solution: VPN
+
+Issue #3
+which bootstrap template to use
+
