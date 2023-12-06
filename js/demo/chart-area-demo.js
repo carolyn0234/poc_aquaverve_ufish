@@ -206,7 +206,7 @@ fetchData().then((data) => {
         yAxes: [{
           ticks: {
             maxTicksLimit: 5,
-            padding: 10,
+            padding: 4,
           },
           gridLines: {
             color: "rgb(234, 236, 244)",
@@ -233,13 +233,7 @@ fetchData().then((data) => {
         displayColors: false,
         intersect: false,
         mode: 'index',
-        caretPadding: 10,
-        callbacks: {
-          label: function (tooltipItem, chart) {
-            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-            return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
-          }
-        }
+        caretPadding: 10
       }
     },
   });
