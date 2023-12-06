@@ -189,6 +189,7 @@ fetchData().then((data) => {
       }],
     },
     options: {
+      responsive: true, 
       scales: {
         xAxes: [{
           time: {
