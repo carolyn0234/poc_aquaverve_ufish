@@ -27,92 +27,179 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-// Area Chart Example
-var ctx = document.getElementById("myAreaChart");
-var myLineChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: [{
-      label: "Earnings",
-      lineTension: 0.3,
-      backgroundColor: "rgba(78, 115, 223, 0.05)",
-      borderColor: "rgba(78, 115, 223, 1)",
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    layout: {
-      padding: {
-        left: 10,
-        right: 25,
-        top: 25,
-        bottom: 0
-      }
-    },
-    scales: {
-      xAxes: [{
-        time: {
-          unit: 'date'
-        },
-        gridLines: {
-          display: false,
-          drawBorder: false
-        },
-        ticks: {
-          maxTicksLimit: 7
-        }
-      }],
-      yAxes: [{
-        ticks: {
-          maxTicksLimit: 5,
-          padding: 10,
-          // Include a dollar sign in the ticks
-          callback: function(value, index, values) {
-            return '$' + number_format(value);
-          }
-        },
-        gridLines: {
-          color: "rgb(234, 236, 244)",
-          zeroLineColor: "rgb(234, 236, 244)",
-          drawBorder: false,
-          borderDash: [2],
-          zeroLineBorderDash: [2]
-        }
-      }],
-    },
-    legend: {
-      display: false
-    },
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      titleMarginBottom: 10,
-      titleFontColor: '#6e707e',
-      titleFontSize: 14,
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      intersect: false,
-      mode: 'index',
-      caretPadding: 10,
-      callbacks: {
-        label: function(tooltipItem, chart) {
-          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
-        }
-      }
-    }
+// // Area Chart Example
+// var ctx = document.getElementById("myAreaChart");
+// var myLineChart = new Chart(ctx, {
+//   type: 'line',
+//   data: {
+//     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+//     datasets: [{
+//       label: "Earnings",
+//       lineTension: 0.3,
+//       backgroundColor: "rgba(78, 115, 223, 0.05)",
+//       borderColor: "rgba(78, 115, 223, 1)",
+//       pointRadius: 3,
+//       pointBackgroundColor: "rgba(78, 115, 223, 1)",
+//       pointBorderColor: "rgba(78, 115, 223, 1)",
+//       pointHoverRadius: 3,
+//       pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+//       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+//       pointHitRadius: 10,
+//       pointBorderWidth: 2,
+//       data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+//     }],
+//   },
+//   options: {
+//     maintainAspectRatio: false,
+//     layout: {
+//       padding: {
+//         left: 10,
+//         right: 25,
+//         top: 25,
+//         bottom: 0
+//       }
+//     },
+//     scales: {
+//       xAxes: [{
+//         time: {
+//           unit: 'date'
+//         },
+//         gridLines: {
+//           display: false,
+//           drawBorder: false
+//         },
+//         ticks: {
+//           maxTicksLimit: 7
+//         }
+//       }],
+//       yAxes: [{
+//         ticks: {
+//           maxTicksLimit: 5,
+//           padding: 10,
+//           // Include a dollar sign in the ticks
+//           callback: function(value, index, values) {
+//             return '$' + number_format(value);
+//           }
+//         },
+//         gridLines: {
+//           color: "rgb(234, 236, 244)",
+//           zeroLineColor: "rgb(234, 236, 244)",
+//           drawBorder: false,
+//           borderDash: [2],
+//           zeroLineBorderDash: [2]
+//         }
+//       }],
+//     },
+//     legend: {
+//       display: false
+//     },
+//     tooltips: {
+//       backgroundColor: "rgb(255,255,255)",
+//       bodyFontColor: "#858796",
+//       titleMarginBottom: 10,
+//       titleFontColor: '#6e707e',
+//       titleFontSize: 14,
+//       borderColor: '#dddfeb',
+//       borderWidth: 1,
+//       xPadding: 15,
+//       yPadding: 15,
+//       displayColors: false,
+//       intersect: false,
+//       mode: 'index',
+//       caretPadding: 10,
+//       callbacks: {
+//         label: function(tooltipItem, chart) {
+//           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+//           return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+//         }
+//       }
+//     }
+//   }
+// });
+
+
+// Function to fetch JSON data from a file
+async function fetchData() {
+  try {
+    const response = await fetch('data.json'); 
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
   }
+}
+
+// Function to group data into two-hour intervals and calculate average
+function aggregateData(data) {
+  const aggregatedData = [];
+  const interval = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+
+  // Sort data by upload_time
+  data.sort((a, b) => new Date(a.upload_time).getTime() - new Date(b.upload_time).getTime());
+
+  // Group data by two-hour intervals
+  const groupedData = data.reduce((groups, record) => {
+    const timestamp = new Date(record.upload_time).getTime();
+    const intervalKey = Math.floor(timestamp / interval) * interval;
+
+    if (!groups[intervalKey]) {
+      groups[intervalKey] = { count: 0, sum: 0, average: 0, timestamp: intervalKey };
+      aggregatedData.push(groups[intervalKey]);
+    }
+
+    groups[intervalKey].count += 1;
+    groups[intervalKey].sum += record.air_temperature;
+    groups[intervalKey].average = groups[intervalKey].sum / groups[intervalKey].count;
+
+    return groups;
+  }, {});
+
+  return aggregatedData;
+}
+
+// Fetch data and then process it
+fetchData().then((data) => {
+  // Now you can use the data variable for further processing
+  const aggregatedData = aggregateData(data);
+
+  // Prepare labels (x-axis) and air temperature values (y-axis) for the chart
+  const labels = aggregatedData.map(item => new Date(item.timestamp).toLocaleTimeString());
+  const airTemperatureValues = aggregatedData.map(item => item.average);
+
+  // Area Chart Example
+  var ctx = document.getElementById("myAreaChart");
+  var myLineChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Air Temperature",
+        lineTension: 0.3,
+        backgroundColor: "rgba(78, 115, 223, 0.05)",
+        borderColor: "rgba(78, 115, 223, 1)",
+        pointRadius: 3,
+        pointBackgroundColor: "rgba(78, 115, 223, 1)",
+        pointBorderColor: "rgba(78, 115, 223, 1)",
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+        pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+        pointHitRadius: 10,
+        pointBorderWidth: 2,
+        data: airTemperatureValues,
+      }],
+    },
+    options: {
+      scales: {
+        x: {
+          type: 'category',
+          labels: labels,
+          offset: true,
+        },
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 });
+
