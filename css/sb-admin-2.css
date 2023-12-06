@@ -4484,6 +4484,8 @@ input[type="button"].btn-block {
 }
 
 .card {
+  max-width: 100%;
+  overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -10828,6 +10830,8 @@ a:focus {
   position: relative;
   height: 10rem;
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
