@@ -11,7 +11,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
     dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
     s = '',
-    toFixedFix = function(n, prec) {
+    toFixedFix = function (n, prec) {
       var k = Math.pow(10, prec);
       return '' + Math.round(n * k) / k;
     };
@@ -121,7 +121,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 // Function to fetch JSON data from a file
 async function fetchData() {
   try {
-    const response = await fetch('data.json'); 
+    const response = await fetch('data.json');
     const data = await response.json();
     return data;
   } catch (error) {
@@ -190,14 +190,31 @@ fetchData().then((data) => {
     },
     options: {
       scales: {
-        x: {
-          type: 'category',
-          labels: labels,
-          offset: true,
-        },
-        y: {
-          beginAtZero: true,
-        },
+        xAxes: [{
+          time: {
+            unit: 'date'
+          },
+          gridLines: {
+            display: false,
+            drawBorder: false
+          },
+          ticks: {
+            maxTicksLimit: 7
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            maxTicksLimit: 5,
+            padding: 10,
+          },
+          gridLines: {
+            color: "rgb(234, 236, 244)",
+            zeroLineColor: "rgb(234, 236, 244)",
+            drawBorder: false,
+            borderDash: [2],
+            zeroLineBorderDash: [2]
+          }
+        }],
       },
     },
   });
