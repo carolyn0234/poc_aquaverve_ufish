@@ -190,6 +190,7 @@ fetchData().then((data) => {
     },
     options: {
       responsive: true, 
+      maintainAspectRatio: false, 
       scales: {
         xAxes: [{
           time: {
