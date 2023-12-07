@@ -229,7 +229,7 @@ fetchData().then((data) => {
         borderColor: '#dddfeb',
         borderWidth: 1,
         xPadding: 15,
-        yPadding: 15,
+        yPadding: 7,
         displayColors: false,
         intersect: false,
         mode: 'index',
