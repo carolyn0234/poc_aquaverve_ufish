@@ -464,19 +464,18 @@
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Air Temperature</h6>
                                     <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        <button class="btn btn-link dropdown-toggle" type="button" id="dateDropdown" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            Select Date
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dateDropdown">
+                                            <!-- Add your date options here -->
+                                            <a class="dropdown-item" href="#" onclick="changeDate('2023-01-01')">January 1, 2023</a>
+                                            <a class="dropdown-item" href="#" onclick="changeDate('2023-01-02')">January 2, 2023</a>
+                                            <!-- Add more date options as needed -->
                                         </div>
                                     </div>
+                                    
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
