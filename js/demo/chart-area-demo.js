@@ -206,7 +206,7 @@ fetchData().then((data) => {
         yAxes: [{
           ticks: {
             maxTicksLimit: 5,
-            padding: 4,
+            padding: 1,
           },
           gridLines: {
             color: "rgb(234, 236, 244)",
