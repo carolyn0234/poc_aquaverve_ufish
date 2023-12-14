@@ -15,3 +15,9 @@ possible solution: VPN
 Issue #3
 which bootstrap template to use
 
+
+area chart - ph, oxygen, water
+pie chart - air temperature
+
+
+ 
